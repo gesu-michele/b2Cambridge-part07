@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block 05 • Reading Part 7 | Dr. Jesús Miguel Lima E. • JM ELT Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+      --gold-cambridge: #d4af37;
+      --gold-hover: #b89628;
+      --blue-cambridge: #2563eb;
+      --blue-cambridge-light: #60a5fa;
+      --red-cambridge: #c8102e;
+      --success-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--gold-cambridge);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .module-badge {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--blue-cambridge);
+      color: var(--blue-cambridge-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .module-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .module-heading-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      letter-spacing: -0.02em;
+    }
+
+    .module-heading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction {
+      background-color: var(--bg-panel);
+      border-left: 4px solid var(--gold-cambridge);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction strong {
+      color: var(--text-main);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .text-column {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      font-size: 1rem;
+      line-height: 1.75;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .text-article-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #38bdf8;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .text-article-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: -1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .person-card {
+      background: var(--bg-card-inner, #070e1c);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .person-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .person-letter-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 800;
+      background: var(--accent-blue, #2563eb);
+      color: #ffffff;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .person-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .person-text {
+      color: #e2e8f0;
+      text-align: justify;
+      font-size: 0.95rem;
+    }
+
+    .questions-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .question-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.15rem 1.35rem;
+      transition: border-color 0.2s;
+    }
+
+    .question-card:focus-within {
+      border-color: var(--border-focus);
+    }
+
+    .question-header {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .q-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      flex-shrink: 0;
+    }
+
+    .q-text {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    .options-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .option-chip {
+      flex: 1;
+      min-width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.5rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .option-chip:hover {
+      border-color: var(--blue-cambridge);
+      background-color: rgba(37, 99, 235, 0.12);
+    }
+
+    .option-chip input[type="radio"] {
+      appearance: none;
+      width: 0.95rem;
+      height: 0.95rem;
+      border: 2px solid var(--text-muted);
+      border-radius: 50%;
+      outline: none;
+      display: grid;
+      place-content: center;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .option-chip input[type="radio"]::before {
+      content: "";
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.15s ease-in-out;
+      background-color: var(--gold-cambridge);
+    }
+
+    .option-chip input[type="radio"]:checked {
+      border-color: var(--gold-cambridge);
+    }
+
+    .option-chip input[type="radio"]:checked::before {
+      transform: scale(1);
+    }
+
+    .opt-letter {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .option-chip.is-correct {
+      border-color: var(--success-green) !important;
+      background-color: rgba(16, 185, 129, 0.16) !important;
+      color: #a7f3d0;
+    }
+
+    .option-chip.is-wrong {
+      border-color: var(--red-cambridge) !important;
+      background-color: rgba(200, 16, 46, 0.16) !important;
+      color: #fecdd3;
+    }
+
+    .diagnostic-feedback-box {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.95rem 1.15rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .diagnostic-feedback-box.correct {
+      display: block;
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 4px solid var(--success-green);
+      color: #d1fae5;
+    }
+
+    .diagnostic-feedback-box.incorrect {
+      display: block;
+      background: rgba(200, 16, 46, 0.08);
+      border-left: 4px solid var(--red-cambridge);
+      color: #fecdd3;
+    }
+
+    .feedback-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feedback-title.correct {
+      color: var(--success-green);
+    }
+
+    .feedback-title.incorrect {
+      color: #fb7185;
+    }
+
+    .feedback-section {
+      margin-top: 0.4rem;
+    }
+
+    .feedback-section strong {
+      color: var(--text-main);
+    }
+
+    .actions-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-submit {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background-color: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 9, 20, 0.85);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal-container {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 2.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+
+    .score-breakdown {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-modal-primary {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-modal-primary:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-modal-secondary {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="nav-back">← Hub Overview</a>
+      <div class="brand-title">Dr. Jesús Miguel Lima E. • JM ELT Solutions</div>
+    </div>
+    <div class="module-badge">BLOCK 05 • PART 7</div>
+  </header>
+
+  <main class="container">
+    <div class="module-header">
+      <h1 class="module-heading-title">Reading Part 7 • Mock 05</h1>
+      <span class="module-heading-sub">Cambridge English: B2 First (FCE) • Multiple Matching (Questions 43–52)</span>
+    </div>
+
+    <div class="task-instruction">
+      You are going to read a magazine article in which four young people talk about how their parents’ careers have influenced them. For questions <strong>43–52</strong>, choose from the people (<strong>A–D</strong>). The people may be chosen more than once. Each correct question awards <strong>1 point</strong> (Total: 10 points).
+    </div>
+
+    <div class="reading-grid">
+      <!-- Left Column: Reading Texts (A-D) -->
+      <section class="text-column">
+        <div>
+          <h2 class="text-article-title">A CHIP OFF THE OLD BLOCK</h2>
+          <p class="text-article-subtitle">How much are children influenced in their choice of profession by their parents’ jobs? We asked four young people about their experience.</p>
+        </div>
+
+        <!-- Person A -->
+        <article class="person-card" id="textA">
+          <div class="person-header">
+            <span class="person-letter-badge">A</span>
+            <span class="person-name">Graham Button</span>
+          </div>
+          <p class="person-text">
+            My dad is a self-employed builder, like his father and his grandfather, and that means he was often out working in the evenings or at weekends when I was a child. I think he was proud of doing a ‘real’ job, something with his hands, which is perhaps why he always tried to push me into taking up the same profession. And of course he had his own business, which he wanted me to continue after he retired. When I was in high school, I decided that I really didn’t want to go into the family business, so at the moment I’m studying history. My father probably thinks I’m going to become a partner in his firm after I graduate, so I do worry that we might have a big fight about this some time in the future.
+          </p>
+        </article>
+
+        <!-- Person B -->
+        <article class="person-card" id="textB">
+          <div class="person-header">
+            <span class="person-letter-badge">B</span>
+            <span class="person-name">Sue Smith</span>
+          </div>
+          <p class="person-text">
+            My mother’s a nuclear physicist, which sounds very exciting. The truth is it’s a pretty tough profession. And I just don’t think it’s a very interesting job. Of course it’s important, but as far as I can see, you spend most of the day at a desk doing hundreds of calculations, and then checking and rechecking them. My mother did try to motivate me to take an interest in science subjects when I was about 14 or 15, and I think she’d be secretly pleased if I wanted to be a scientist, but she’s never put any sort of pressure on me. But I know she also thinks – as I do – that there aren’t so many jobs available in pure research, which is what she does.
+          </p>
+        </article>
+
+        <!-- Person C -->
+        <article class="person-card" id="textC">
+          <div class="person-header">
+            <span class="person-letter-badge">C</span>
+            <span class="person-name">Barry Porter</span>
+          </div>
+          <p class="person-text">
+            When people find out my mother’s an actress, they always ask what Hollywood films she’s been in, and I have to explain that she’s only ever worked in provincial theatres. She’s hardly ever been on television, which is why not many people know her. That’s one of the problems with the theatre: very few people get to the top of the profession, and you have to be extremely lucky just to make a living from it. Actors often worry about where the next job’s coming from. Even if I had any talent for acting, I’d be put off by that side of it. As you can gather, I really don’t think my future is in the theatre, and in any case my mother has always tried to steer me away from taking up the profession.
+          </p>
+        </article>
+
+        <!-- Person D -->
+        <article class="person-card" id="textD">
+          <div class="person-header">
+            <span class="person-letter-badge">D</span>
+            <span class="person-name">Ruth Lawrence</span>
+          </div>
+          <p class="person-text">
+            My father teaches maths at high school, which definitely used to come in handy when we had a maths test the next day! I think in the back of his mind he expected me to be good at maths because he was always there to explain it. The truth is I’ve always been terrible at the subject. He also used to tell me about the satisfaction you can get from teaching, and I do think he’s right about that. I used to think I wanted to be a teacher, but then I began to think of the disadvantages. The profession’s changed and these days teachers have to work a lot in the holidays and prepare a lot at home. In the end I decided to go into accounting, and I don’t really think my dad’s job affected my decision at all.
+          </p>
+        </article>
+      </section>
+
+      <!-- Right Column: Questions 43-52 -->
+      <section class="questions-column">
+        <form id="matchingForm">
+
+          <!-- Q43 -->
+          <div class="question-card" id="q43_card">
+            <div class="question-header">
+              <span class="q-number">43</span>
+              <span class="q-text">Which person thinks his or her parent’s job is boring?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q43" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q43" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q43" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q43" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q43"></div>
+          </div>
+
+          <!-- Q44 -->
+          <div class="question-card" id="q44_card">
+            <div class="question-header">
+              <span class="q-number">44</span>
+              <span class="q-text">Which person was discouraged from following the same profession?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q44" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q44" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q44" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q44" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q44"></div>
+          </div>
+
+          <!-- Q45 -->
+          <div class="question-card" id="q45_card">
+            <div class="question-header">
+              <span class="q-number">45</span>
+              <span class="q-text">Which person changed his or her mind about a future career?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q45" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q45" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q45" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q45" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q45"></div>
+          </div>
+
+          <!-- Q46 -->
+          <div class="question-card" id="q46_card">
+            <div class="question-header">
+              <span class="q-number">46</span>
+              <span class="q-text">Which person experienced pressure to follow the same profession?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q46" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q46" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q46" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q46" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q46"></div>
+          </div>
+
+          <!-- Q47 -->
+          <div class="question-card" id="q47_card">
+            <div class="question-header">
+              <span class="q-number">47</span>
+              <span class="q-text">Which person feels he or she has not been influenced in choosing a career?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q47" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q47" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q47" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q47" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q47"></div>
+          </div>
+
+          <!-- Q48 -->
+          <div class="question-card" id="q48_card">
+            <div class="question-header">
+              <span class="q-number">48</span>
+              <span class="q-text">Which person comes from a long line of people in this profession?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q48" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q48" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q48" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q48" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q48"></div>
+          </div>
+
+          <!-- Q49 -->
+          <div class="question-card" id="q49_card">
+            <div class="question-header">
+              <span class="q-number">49</span>
+              <span class="q-text">Which person thinks the profession in question offers few opportunities?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q49" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q49" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q49" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q49" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q49"></div>
+          </div>
+
+          <!-- Q50 -->
+          <div class="question-card" id="q50_card">
+            <div class="question-header">
+              <span class="q-number">50</span>
+              <span class="q-text">Which person is concerned his or her choice will cause an argument?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q50" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q50" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q50" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q50" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q50"></div>
+          </div>
+
+          <!-- Q51 -->
+          <div class="question-card" id="q51_card">
+            <div class="question-header">
+              <span class="q-number">51</span>
+              <span class="q-text">Which person thinks that success in his or her parent’s profession is difficult?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q51" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q51" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q51" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q51" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q51"></div>
+          </div>
+
+          <!-- Q52 -->
+          <div class="question-card" id="q52_card">
+            <div class="question-header">
+              <span class="q-number">52</span>
+              <span class="q-text">Which person thinks his or her parent’s profession is rewarding?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q52" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q52" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q52" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q52" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q52"></div>
+          </div>
+
+          <div class="actions-bar">
+            <button type="button" class="btn-submit" id="submitBtn">Submit & View Diagnostic Feedback</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    All Rights Reserved © by Dr. Jesús Miguel Lima E. • JM ELT Solutions
+  </footer>
+
+  <!-- Modal Diagnostic Feedback -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container">
+      <h2 class="modal-title">Diagnostic Results</h2>
+      <div class="score-display" id="scoreValue">0 / 10</div>
+      <p class="score-breakdown" id="scoreBreakdown">
+        You answered 0 out of 10 questions correctly.<br>
+        (Cambridge B2 Reading Part 7: 1 mark per question)
+      </p>
+      <div class="modal-actions">
+        <a href="./BLOCK 06 - PART 07.html" class="btn-modal-primary">Continue to Block 06 ➔</a>
+        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Review Answers on Screen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Pedagogical Data & Official Cambridge Key (Part 7: 43B, 44C, 45D, 46A, 47D, 48A, 49B, 50A, 51C, 52D)[cite: 5]
+    const PEDAGOGICAL_DATA = {
+      q43: {
+        correct: "B",
+        person: "Sue Smith",
+        location: "Section B: 'And I just don’t think it’s a very interesting job.'",
+        whyCorrect: "Sue directly considers her mother's daily work monotonous and boring, observing that sitting at a desk checking repetitive calculations all day is far from interesting.",
+        trap: "Graham (A) chose history over building, but never claims that building with one's hands is uninteresting or boring."
+      },
+      q44: {
+        correct: "C",
+        person: "Barry Porter",
+        location: "Section C: '...and in any case my mother has always tried to steer me away from taking up the profession.'",
+        whyCorrect: "Barry's mother actively dissuaded and discouraged him from entering acting ('tried to steer me away from taking up the profession').",
+        trap: "Sue's mother (B) never put pressure on her, but actually tried to motivate her to take an interest in science rather than discouraging her."
+      },
+      q45: {
+        correct: "D",
+        person: "Ruth Lawrence",
+        location: "Section D: 'I used to think I wanted to be a teacher, but then I began to think of the disadvantages... In the end I decided to go into accounting...'",
+        whyCorrect: "Ruth initially wanted to follow her father into teaching, but reconsidered the drawbacks and changed her mind in favor of accounting.",
+        trap: "Graham (A) decided in high school he didn't want to go into the family firm, but there is no mention of having wanted to be a builder first."
+      },
+      q46: {
+        correct: "A",
+        person: "Graham Button",
+        location: "Section A: '...which is perhaps why he always tried to push me into taking up the same profession.'",
+        whyCorrect: "Graham explicitly felt parental coercion and pressure ('tried to push me into taking up the same profession') to join the family business.",
+        trap: "Sue (B) explicitly notes the opposite: 'she’s never put any sort of pressure on me'."
+      },
+      q47: {
+        correct: "D",
+        person: "Ruth Lawrence",
+        location: "Section D: 'In the end I decided to go into accounting, and I don’t really think my dad’s job affected my decision at all.'",
+        whyCorrect: "Ruth asserts complete independence in her ultimate career choice, stating that her father being a maths teacher did not affect or influence her choice of accounting.",
+        trap: "Graham (A) chose history precisely in reaction against his father's forceful expectations."
+      },
+      q48: {
+        correct: "A",
+        person: "Graham Button",
+        location: "Section A: 'My dad is a self-employed builder, like his father and his grandfather...'",
+        whyCorrect: "The building trade spans three prior generations in Graham's household ('his father and his grandfather'), establishing a long family lineage in the profession.",
+        trap: "Ruth (D) and Sue (B) only mention their individual parents, without any reference to earlier generations."
+      },
+      q49: {
+        correct: "B",
+        person: "Sue Smith",
+        location: "Section B: '...there aren’t so many jobs available in pure research, which is what she does.'",
+        whyCorrect: "Sue points out that her mother's specific field of scientific research provides scarce employment vacancies ('aren't so many jobs available').",
+        trap: "Barry (C) talks about the insecurity of acting and the difficulty of reaching the top, but Sue directly evaluates the scarcity of vacancies across pure research."
+      },
+      q50: {
+        correct: "A",
+        person: "Graham Button",
+        location: "Section A: '...so I do worry that we might have a big fight about this some time in the future.'",
+        whyCorrect: "Graham anticipates emotional conflict and friction with his father ('worry that we might have a big fight') once the truth about his career path is revealed.",
+        trap: "Barry (C) knows his mother supports his decision not to act, so no family confrontation is feared."
+      },
+      q51: {
+        correct: "C",
+        person: "Barry Porter",
+        location: "Section C: 'That’s one of the problems with the theatre: very few people get to the top of the profession, and you have to be extremely lucky just to make a living from it.'",
+        whyCorrect: "Barry stresses how tough it is to attain genuine success in acting ('very few people get to the top... extremely lucky just to make a living').",
+        trap: "Sue (B) says nuclear physics is a tough profession, but Barry specifically elaborates on how rare and difficult reaching the top of the field actually is."
+      },
+      q52: {
+        correct: "D",
+        person: "Ruth Lawrence",
+        location: "Section D: 'He also used to tell me about the satisfaction you can get from teaching, and I do think he’s right about that.'",
+        whyCorrect: "Ruth acknowledges the sense of fulfillment and rewarding satisfaction ('satisfaction you can get from teaching') inherent in her father's vocation.",
+        trap: "Graham's father (A) was proud of doing a 'real' job, but Ruth explicitly affirms the professional satisfaction and rewarding nature of teaching."
+      }
+    };
+
+    function getFormattedDate() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      let correctCount = 0;
+      const totalQuestions = 10;
+      const pointsPerQuestion = 1;
+
+      for (let i = 43; i <= 52; i++) {
+        const qName = 'q' + i;
+        const selected = document.querySelector(`input[name="${qName}"]:checked`);
+        const card = document.getElementById(`${qName}_card`);
+        const chips = card.querySelectorAll('.option-chip');
+        const feedbackBox = document.getElementById(`feedback_${qName}`);
+        const data = PEDAGOGICAL_DATA[qName];
+
+        chips.forEach(chip => {
+          chip.classList.remove('is-correct', 'is-wrong');
+          const radio = chip.querySelector('input[type="radio"]');
+          if (radio.value === data.correct) {
+            chip.classList.add('is-correct');
+          } else if (selected && radio.value === selected.value) {
+            chip.classList.add('is-wrong');
+          }
+        });
+
+        const isUserCorrect = selected && selected.value === data.correct;
+        if (isUserCorrect) {
+          correctCount++;
+          feedbackBox.className = "diagnostic-feedback-box correct";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title correct">✓ Correct: Person ${data.correct} (${data.person})</div>
+            <div class="feedback-section"><strong>Text Evidence:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Pedagogical Rationale:</strong> ${data.whyCorrect}</div>
+          `;
+        } else {
+          feedbackBox.className = "diagnostic-feedback-box incorrect";
+          const chosenLetter = selected ? selected.value : "None";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title incorrect">✗ Incorrect (Your choice: ${chosenLetter} | Correct: Person ${data.correct} - ${data.person})</div>
+            <div class="feedback-section"><strong>Text Evidence:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Why This Fits:</strong> ${data.whyCorrect}</div>
+            <div class="feedback-section"><strong>The Trap / Distractor:</strong> ${data.trap}</div>
+          `;
+        }
+      }
+
+      const totalScore = correctCount * pointsPerQuestion;
+      const maxScore = totalQuestions * pointsPerQuestion;
+
+      document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+      document.getElementById('scoreBreakdown').innerHTML = `
+        You scored <strong>${correctCount}</strong> out of <strong>${totalQuestions}</strong> correct answers.<br>
+        (Cambridge B2 Reading Part 7: 1 mark per question | Section Total: ${totalScore} pts)
+      `;
+
+      saveSessionData(totalScore, correctCount);
+      document.getElementById('feedbackModal').classList.add('active');
+    });
+
+    function saveSessionData(score, correctCount) {
+      const storageKey = "fce_trainer_part07_v1";
+      let sessionData = {};
+
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          sessionData = JSON.parse(stored);
+        }
+      } catch (e) {
+        sessionData = {};
+      }
+
+      if (!sessionData.unlockedBlocks) {
+        sessionData.unlockedBlocks = [];
+      }
+
+      if (!sessionData.unlockedBlocks.includes("block_05_part_07")) {
+        sessionData.unlockedBlocks.push("block_05_part_07");
+      }
+      // Desbloquea secuencialmente el Bloque 06
+      if (!sessionData.unlockedBlocks.includes("block_06_part_07")) {
+        sessionData.unlockedBlocks.push("block_06_part_07");
+      }
+
+      sessionData["block_05_part_07"] = {
+        correct: correctCount,
+        total: score,
+        completed: true,
+        timestamp: getFormattedDate()
+      };
+
+      if (!sessionData.readingScores) {
+        sessionData.readingScores = {};
+      }
+      sessionData.readingScores["block_05_part_07"] = sessionData["block_05_part_07"];
+
+      localStorage.setItem(storageKey, JSON.stringify(sessionData));
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

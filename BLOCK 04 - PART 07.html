@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Block 04 • Reading Part 7 | Dr. Jesús Miguel Lima E. • JM ELT Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #040914;
+      --bg-panel: #0a1324;
+      --bg-card: #101d36;
+      --border-subtle: #1e293b;
+      --border-focus: #3b82f6;
+      --gold-cambridge: #d4af37;
+      --gold-hover: #b89628;
+      --blue-cambridge: #2563eb;
+      --blue-cambridge-light: #60a5fa;
+      --red-cambridge: #c8102e;
+      --success-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--bg-panel);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--gold-cambridge);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .module-badge {
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--blue-cambridge);
+      color: var(--blue-cambridge-light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .module-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .module-heading-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      letter-spacing: -0.02em;
+    }
+
+    .module-heading-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction {
+      background-color: var(--bg-panel);
+      border-left: 4px solid var(--gold-cambridge);
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .task-instruction strong {
+      color: var(--text-main);
+    }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .text-column {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      font-size: 1rem;
+      line-height: 1.75;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .text-article-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #38bdf8;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .text-article-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: -1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .person-card {
+      background: var(--bg-card-inner, #070e1c);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .person-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .person-letter-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 800;
+      background: var(--accent-blue, #2563eb);
+      color: #ffffff;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .person-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+    }
+
+    .person-text {
+      color: #e2e8f0;
+      text-align: justify;
+      font-size: 0.95rem;
+    }
+
+    .questions-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-height: calc(100vh - 270px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-subtle) transparent;
+    }
+
+    .question-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.15rem 1.35rem;
+      transition: border-color 0.2s;
+    }
+
+    .question-card:focus-within {
+      border-color: var(--border-focus);
+    }
+
+    .question-header {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .q-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-cambridge);
+      flex-shrink: 0;
+    }
+
+    .q-text {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    .options-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .option-chip {
+      flex: 1;
+      min-width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.5rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .option-chip:hover {
+      border-color: var(--blue-cambridge);
+      background-color: rgba(37, 99, 235, 0.12);
+    }
+
+    .option-chip input[type="radio"] {
+      appearance: none;
+      width: 0.95rem;
+      height: 0.95rem;
+      border: 2px solid var(--text-muted);
+      border-radius: 50%;
+      outline: none;
+      display: grid;
+      place-content: center;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .option-chip input[type="radio"]::before {
+      content: "";
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.15s ease-in-out;
+      background-color: var(--gold-cambridge);
+    }
+
+    .option-chip input[type="radio"]:checked {
+      border-color: var(--gold-cambridge);
+    }
+
+    .option-chip input[type="radio"]:checked::before {
+      transform: scale(1);
+    }
+
+    .opt-letter {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .option-chip.is-correct {
+      border-color: var(--success-green) !important;
+      background-color: rgba(16, 185, 129, 0.16) !important;
+      color: #a7f3d0;
+    }
+
+    .option-chip.is-wrong {
+      border-color: var(--red-cambridge) !important;
+      background-color: rgba(200, 16, 46, 0.16) !important;
+      color: #fecdd3;
+    }
+
+    .diagnostic-feedback-box {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.95rem 1.15rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .diagnostic-feedback-box.correct {
+      display: block;
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 4px solid var(--success-green);
+      color: #d1fae5;
+    }
+
+    .diagnostic-feedback-box.incorrect {
+      display: block;
+      background: rgba(200, 16, 46, 0.08);
+      border-left: 4px solid var(--red-cambridge);
+      color: #fecdd3;
+    }
+
+    .feedback-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feedback-title.correct {
+      color: var(--success-green);
+    }
+
+    .feedback-title.incorrect {
+      color: #fb7185;
+    }
+
+    .feedback-section {
+      margin-top: 0.4rem;
+    }
+
+    .feedback-section strong {
+      color: var(--text-main);
+    }
+
+    .actions-bar {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-submit {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      background-color: var(--bg-panel);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(4, 9, 20, 0.85);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: grid;
+    }
+
+    .modal-container {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--gold-cambridge);
+      border-radius: 8px;
+      width: 90%;
+      max-width: 520px;
+      padding: 2.25rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold-cambridge);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+
+    .score-breakdown {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-modal-primary {
+      background-color: var(--gold-cambridge);
+      color: #040914;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.95rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn-modal-primary:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .btn-modal-secondary {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      padding: 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <a href="./index.html" class="nav-back">← Hub Overview</a>
+      <div class="brand-title">Dr. Jesús Miguel Lima E. • JM ELT Solutions</div>
+    </div>
+    <div class="module-badge">BLOCK 04 • PART 7</div>
+  </header>
+
+  <main class="container">
+    <div class="module-header">
+      <h1 class="module-heading-title">Reading Part 7 • Mock 04</h1>
+      <span class="module-heading-sub">Cambridge English: B2 First (FCE) • Multiple Matching (Questions 43–52)</span>
+    </div>
+
+    <div class="task-instruction">
+      You are going to read a magazine article about bicycles. For questions <strong>43–52</strong>, choose from the people (<strong>A–D</strong>). The people may be chosen more than once. Each correct question awards <strong>1 point</strong> (Total: 10 points).
+    </div>
+
+    <div class="reading-grid">
+      <!-- Left Column: Reading Texts (A-D) -->
+      <section class="text-column">
+        <div>
+          <h2 class="text-article-title">My New Bicycle</h2>
+          <p class="text-article-subtitle">Four people talk about their bikes.</p>
+        </div>
+
+        <!-- Person A -->
+        <article class="person-card" id="textA">
+          <div class="person-header">
+            <span class="person-letter-badge">A</span>
+            <span class="person-name">Jonas Hagen</span>
+          </div>
+          <p class="person-text">
+            I bought my new mountain bike online and as soon as it was delivered to my home in kit form I set to work. Once it actually looked like a bike and I’d checked that everything seemed to be working properly, I set off down the road. All went well at first, but later on I had a brief moment of panic when the brakes suddenly failed and I narrowly avoided crashing into a hedge. I adjusted them when I got home, and since then they’ve been fine. The only other adjustment I’ve had to make is to raise the seat to the maximum because it turns out this bike is for riders whose inside leg measures considerably less than mine. I should really have noticed that before I bought it.
+          </p>
+        </article>
+
+        <!-- Person B -->
+        <article class="person-card" id="textB">
+          <div class="person-header">
+            <span class="person-letter-badge">B</span>
+            <span class="person-name">Lili Huang</span>
+          </div>
+          <p class="person-text">
+            I originally bought my bike just for occasional use, but now I go everywhere on it. It’s great exercise, every bit as good as going to the gym. It feels just the right size for me and somehow I always feel full of energy when I’m on it, even when my friends and I ride into the mountains at weekends. I’ve only ever had one breakdown, which is when the chain broke. Fortunately there was a garage nearby, where a very kind car mechanic quickly got me back on the road. I don’t know what I’d do without my bike, which is slightly worrying because a lot of people round here have had their bikes stolen. That’s why I keep it in the hall downstairs, rather than in the street.
+          </p>
+        </article>
+
+        <!-- Person C -->
+        <article class="person-card" id="textC">
+          <div class="person-header">
+            <span class="person-letter-badge">C</span>
+            <span class="person-name">James Thompson</span>
+          </div>
+          <p class="person-text">
+            This is only the second bicycle I’ve ever bought. It was on offer at the local cycle shop and I think I got something of a bargain because on the whole I’ve been pleased with it. At first I had some difficulties with the gears, but I managed to sort those out while I was riding. It’s a very solid bike, though that does mean it’s rather heavy and I wouldn’t want to have to push it far if I had a breakdown. It also makes pedalling up steep slopes hard work, although fortunately most of the routes round here are reasonably flat. I don’t think it’s the kind of bike anyone would want to steal, but I always secure it with a good strong lock just in case. Recently I’ve also fitted more powerful front and rear lights so that drivers can see me better after dark.
+          </p>
+        </article>
+
+        <!-- Person D -->
+        <article class="person-card" id="textD">
+          <div class="person-header">
+            <span class="person-letter-badge">D</span>
+            <span class="person-name">Mia Doherty</span>
+          </div>
+          <p class="person-text">
+            I actually chose this bike in something of a hurry. I’d left my old one outside the sports centre and when I came back it had just disappeared. I reported it, of course, but that was the last I ever saw of it and I needed a new one to get to work every day. I probably paid more than I should have done for it, though I know the previous owner had looked after it well and I haven’t had any trouble with it. Apart, that is, from a flat tyre which meant I had to stop and mend it on the way home in the pouring rain. Riding it certainly helps keep me fit, and even in weather like that I wouldn’t change it for a car. The only incident I’ve had was when a dog ran out into the road in front of me, but the brakes did their job superbly.
+          </p>
+        </article>
+      </section>
+
+      <!-- Right Column: Questions 43-52 -->
+      <section class="questions-column">
+        <form id="matchingForm">
+
+          <!-- Q43 -->
+          <div class="question-card" id="q43_card">
+            <div class="question-header">
+              <span class="q-number">43</span>
+              <span class="q-text">Which person bought a second-hand bike?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q43" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q43" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q43" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q43" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q43"></div>
+          </div>
+
+          <!-- Q44 -->
+          <div class="question-card" id="q44_card">
+            <div class="question-header">
+              <span class="q-number">44</span>
+              <span class="q-text">Which person says their new bike is good value for money?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q44" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q44" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q44" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q44" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q44"></div>
+          </div>
+
+          <!-- Q45 -->
+          <div class="question-card" id="q45_card">
+            <div class="question-header">
+              <span class="q-number">45</span>
+              <span class="q-text">Which person found it difficult to slow down at one point?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q45" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q45" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q45" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q45" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q45"></div>
+          </div>
+
+          <!-- Q46 -->
+          <div class="question-card" id="q46_card">
+            <div class="question-header">
+              <span class="q-number">46</span>
+              <span class="q-text">Which person had to take their bike in for repair?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q46" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q46" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q46" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q46" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q46"></div>
+          </div>
+
+          <!-- Q47 -->
+          <div class="question-card" id="q47_card">
+            <div class="question-header">
+              <span class="q-number">47</span>
+              <span class="q-text">Which person needed to put the bike together before they could ride it?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q47" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q47" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q47" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q47" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q47"></div>
+          </div>
+
+          <!-- Q48 -->
+          <div class="question-card" id="q48_card">
+            <div class="question-header">
+              <span class="q-number">48</span>
+              <span class="q-text">Which person bought a new bicycle to replace one that had been stolen?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q48" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q48" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q48" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q48" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q48"></div>
+          </div>
+
+          <!-- Q49 -->
+          <div class="question-card" id="q49_card">
+            <div class="question-header">
+              <span class="q-number">49</span>
+              <span class="q-text">Which person says that riding their bike up hills is tiring?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q49" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q49" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q49" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q49" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q49"></div>
+          </div>
+
+          <!-- Q50 -->
+          <div class="question-card" id="q50_card">
+            <div class="question-header">
+              <span class="q-number">50</span>
+              <span class="q-text">Which person says they wish they had checked the size of the bike sooner?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q50" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q50" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q50" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q50" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q50"></div>
+          </div>
+
+          <!-- Q51 -->
+          <div class="question-card" id="q51_card">
+            <div class="question-header">
+              <span class="q-number">51</span>
+              <span class="q-text">Which person had to get off their bike when they were riding to fix it?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q51" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q51" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q51" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q51" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q51"></div>
+          </div>
+
+          <!-- Q52 -->
+          <div class="question-card" id="q52_card">
+            <div class="question-header">
+              <span class="q-number">52</span>
+              <span class="q-text">Which person compares cycling with another way of keeping fit?</span>
+            </div>
+            <div class="options-row">
+              <label class="option-chip"><input type="radio" name="q52" value="A"><span class="opt-letter">A</span></label>
+              <label class="option-chip"><input type="radio" name="q52" value="B"><span class="opt-letter">B</span></label>
+              <label class="option-chip"><input type="radio" name="q52" value="C"><span class="opt-letter">C</span></label>
+              <label class="option-chip"><input type="radio" name="q52" value="D"><span class="opt-letter">D</span></label>
+            </div>
+            <div class="diagnostic-feedback-box" id="feedback_q52"></div>
+          </div>
+
+          <div class="actions-bar">
+            <button type="button" class="btn-submit" id="submitBtn">Submit & View Diagnostic Feedback</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    All Rights Reserved © by Dr. Jesús Miguel Lima E. • JM ELT Solutions
+  </footer>
+
+  <!-- Modal Diagnostic Feedback -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container">
+      <h2 class="modal-title">Diagnostic Results</h2>
+      <div class="score-display" id="scoreValue">0 / 10</div>
+      <p class="score-breakdown" id="scoreBreakdown">
+        You answered 0 out of 10 questions correctly.<br>
+        (Cambridge B2 Reading Part 7: 1 mark per question)
+      </p>
+      <div class="modal-actions">
+        <a href="./BLOCK 05 - PART 07.html" class="btn-modal-primary">Continue to Block 05 ➔</a>
+        <button type="button" class="btn-modal-secondary" onclick="closeModal()">Review Answers on Screen</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Pedagogical Data & Official Cambridge Key (Part 7: 43D, 44C, 45A, 46B, 47A, 48D, 49C, 50A, 51D, 52B)[cite: 4]
+    const PEDAGOGICAL_DATA = {
+      q43: {
+        correct: "D",
+        person: "Mia Doherty",
+        location: "Section D: '...though I know the previous owner had looked after it well...'",
+        whyCorrect: "Mia explicitly mentions that the bike had a 'previous owner', directly indicating it was bought second-hand.",
+        trap: "James (C) says it is only the second bicycle he has ever bought, but he purchased it brand new on offer at the cycle shop."
+      },
+      q44: {
+        correct: "C",
+        person: "James Thompson",
+        location: "Section C: 'It was on offer at the local cycle shop and I think I got something of a bargain...'",
+        whyCorrect: "James bought the bike on offer and calls it 'something of a bargain', which paraphrases that it is good value for money.",
+        trap: "Mia (D) remarks the opposite: 'I probably paid more than I should have done for it'."
+      },
+      q45: {
+        correct: "A",
+        person: "Jonas Hagen",
+        location: "Section A: '...I had a brief moment of panic when the brakes suddenly failed and I narrowly avoided crashing into a hedge.'",
+        whyCorrect: "Because his brakes failed completely, Jonas could not decelerate or stop, barely avoiding an accident.",
+        trap: "Mia (D) experienced an emergency when a dog ran out, but her 'brakes did their job superbly', meaning she slowed down effectively."
+      },
+      q46: {
+        correct: "B",
+        person: "Lili Huang",
+        location: "Section B: 'Fortunately there was a garage nearby, where a very kind car mechanic quickly got me back on the road.'",
+        whyCorrect: "When her chain broke, Lili took the bicycle to a nearby garage where a professional mechanic carried out the repair.",
+        trap: "Mia (D) repaired her puncture herself on the road rather than taking it into a commercial workshop."
+      },
+      q47: {
+        correct: "A",
+        person: "Jonas Hagen",
+        location: "Section A: '...as soon as it was delivered to my home in kit form I set to work. Once it actually looked like a bike... I set off...'",
+        whyCorrect: "The bike was delivered unassembled ('in kit form'), requiring him to build and assemble it before taking his first ride.",
+        trap: "James (C) added lights to his bike recently, but the bicycle arrived fully functional and built."
+      },
+      q48: {
+        correct: "D",
+        person: "Mia Doherty",
+        location: "Section D: 'I’d left my old one outside the sports centre and when I came back it had just disappeared. I reported it... and I needed a new one to get to work every day.'",
+        whyCorrect: "Mia's previous bike was stolen from outside the sports centre, forcing her to purchase another one right away.",
+        trap: "Lili (B) mentions that many neighbors had their bikes stolen, but hers has never been taken."
+      },
+      q49: {
+        correct: "C",
+        person: "James Thompson",
+        location: "Section C: 'It’s a very solid bike, though that does mean it’s rather heavy... It also makes pedalling up steep slopes hard work...'",
+        whyCorrect: "James notes that the bike's heavy build makes riding uphill ('pedalling up steep slopes') exhausting and hard work.",
+        trap: "Lili (B) rides into the mountains, but explicitly states she 'always feels full of energy'."
+      },
+      q50: {
+        correct: "A",
+        person: "Jonas Hagen",
+        location: "Section A: '...it turns out this bike is for riders whose inside leg measures considerably less than mine. I should really have noticed that before I bought it.'",
+        whyCorrect: "Jonas regrets not verifying frame measurements prior to purchase ('I should really have noticed that before I bought it').",
+        trap: "Lili (B) notes that her bicycle 'feels just the right size for me', feeling zero regret."
+      },
+      q51: {
+        correct: "D",
+        person: "Mia Doherty",
+        location: "Section D: '...a flat tyre which meant I had to stop and mend it on the way home in the pouring rain.'",
+        whyCorrect: "Mia had to dismount during her commute ('stop and mend it on the way home') to repair a punctured tyre.",
+        trap: "James (C) resolved his gear troubles 'while I was riding', without dismounting or stopping."
+      },
+      q52: {
+        correct: "B",
+        person: "Lili Huang",
+        location: "Section B: 'It’s great exercise, every bit as good as going to the gym.'",
+        whyCorrect: "Lili directly compares the aerobic fitness benefits of cycling to working out in a gym facility.",
+        trap: "Mia (D) mentions that riding helps keep her fit and contrasts it with driving a car, but does not compare it to another exercise regime."
+      }
+    };
+
+    function getFormattedDate() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function () {
+      let correctCount = 0;
+      const totalQuestions = 10;
+      const pointsPerQuestion = 1;
+
+      for (let i = 43; i <= 52; i++) {
+        const qName = 'q' + i;
+        const selected = document.querySelector(`input[name="${qName}"]:checked`);
+        const card = document.getElementById(`${qName}_card`);
+        const chips = card.querySelectorAll('.option-chip');
+        const feedbackBox = document.getElementById(`feedback_${qName}`);
+        const data = PEDAGOGICAL_DATA[qName];
+
+        chips.forEach(chip => {
+          chip.classList.remove('is-correct', 'is-wrong');
+          const radio = chip.querySelector('input[type="radio"]');
+          if (radio.value === data.correct) {
+            chip.classList.add('is-correct');
+          } else if (selected && radio.value === selected.value) {
+            chip.classList.add('is-wrong');
+          }
+        });
+
+        const isUserCorrect = selected && selected.value === data.correct;
+        if (isUserCorrect) {
+          correctCount++;
+          feedbackBox.className = "diagnostic-feedback-box correct";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title correct">✓ Correct: Person ${data.correct} (${data.person})</div>
+            <div class="feedback-section"><strong>Text Evidence:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Pedagogical Rationale:</strong> ${data.whyCorrect}</div>
+          `;
+        } else {
+          feedbackBox.className = "diagnostic-feedback-box incorrect";
+          const chosenLetter = selected ? selected.value : "None";
+          feedbackBox.innerHTML = `
+            <div class="feedback-title incorrect">✗ Incorrect (Your choice: ${chosenLetter} | Correct: Person ${data.correct} - ${data.person})</div>
+            <div class="feedback-section"><strong>Text Evidence:</strong> ${data.location}</div>
+            <div class="feedback-section"><strong>Why This Fits:</strong> ${data.whyCorrect}</div>
+            <div class="feedback-section"><strong>The Trap / Distractor:</strong> ${data.trap}</div>
+          `;
+        }
+      }
+
+      const totalScore = correctCount * pointsPerQuestion;
+      const maxScore = totalQuestions * pointsPerQuestion;
+
+      document.getElementById('scoreValue').textContent = `${totalScore} / ${maxScore}`;
+      document.getElementById('scoreBreakdown').innerHTML = `
+        You scored <strong>${correctCount}</strong> out of <strong>${totalQuestions}</strong> correct answers.<br>
+        (Cambridge B2 Reading Part 7: 1 mark per question | Section Total: ${totalScore} pts)
+      `;
+
+      saveSessionData(totalScore, correctCount);
+      document.getElementById('feedbackModal').classList.add('active');
+    });
+
+    function saveSessionData(score, correctCount) {
+      const storageKey = "fce_trainer_part07_v1";
+      let sessionData = {};
+
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          sessionData = JSON.parse(stored);
+        }
+      } catch (e) {
+        sessionData = {};
+      }
+
+      if (!sessionData.unlockedBlocks) {
+        sessionData.unlockedBlocks = [];
+      }
+
+      if (!sessionData.unlockedBlocks.includes("block_04_part_07")) {
+        sessionData.unlockedBlocks.push("block_04_part_07");
+      }
+      // Desbloquea secuencialmente el Bloque 05
+      if (!sessionData.unlockedBlocks.includes("block_05_part_07")) {
+        sessionData.unlockedBlocks.push("block_05_part_07");
+      }
+
+      sessionData["block_04_part_07"] = {
+        correct: correctCount,
+        total: score,
+        completed: true,
+        timestamp: getFormattedDate()
+      };
+
+      if (!sessionData.readingScores) {
+        sessionData.readingScores = {};
+      }
+      sessionData.readingScores["block_04_part_07"] = sessionData["block_04_part_07"];
+
+      localStorage.setItem(storageKey, JSON.stringify(sessionData));
+    }
+
+    function closeModal() {
+      document.getElementById('feedbackModal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>
